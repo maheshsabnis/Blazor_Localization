@@ -1,0 +1,46 @@
+﻿@inject NavigationManager NavManager
+@inject IJSRuntime JSRuntime
+@inject IStringLocalizer<Resources.Resources> localizer
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <td>
+                @localizer["selectculture"]
+            </td>
+            <td>
+                <select class="form-control" @bind="UICulture" style="width:400px; margin-left:10px;">
+                    @foreach (var culture in uicultutes)
+                    {
+                        <option value="@culture">@culture.DisplayName</option>
+                    }
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@code {
+    CultureInfo[] uicultutes = new[]
+    {
+        // default cultures supported by the applciation
+        new CultureInfo("en-US"),
+        new CultureInfo("de-DE"),
+        new CultureInfo("fr-FR")
+    };
+    CultureInfo UICulture
+    {
+        get => CultureInfo.CurrentCulture;
+        set
+        {
+            if (CultureInfo.CurrentCulture != value)
+            {
+                var js = (IJSInProcessRuntime)JSRuntime;
+                js.InvokeVoid("UICulture.set", value.Name);
+                // Load the Current URL
+                NavManager.NavigateTo(NavManager.Uri, forceLoad: true);
+            }
+        }
+    }
+}
+

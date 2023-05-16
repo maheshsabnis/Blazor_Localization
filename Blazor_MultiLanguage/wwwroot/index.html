@@ -27,6 +27,13 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        /* The Selected Culture will be stored in LocalStorage*/
+        window.UICulture = {
+            get: () => localStorage['UICulture'],
+            set: (value) => localStorage['UICulture'] = value
+        };
+    </script>
 </body>
 
 </html>

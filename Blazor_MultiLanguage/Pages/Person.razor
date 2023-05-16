@@ -1,0 +1,84 @@
+﻿@page "/person"
+
+@inject IStringLocalizer<Resources> localizer
+<h1>@localizer["personinfo"]</h1>
+<EditForm Model="@person" OnValidSubmit="@savePerson">
+    <table class="table table-bordered table-striped">
+        <tbody>
+            <tr>
+                <td>
+                    @localizer["personid"]
+                </td>
+                <td>
+                    <InputNumber @bind-Value="person.PersonId" class="form-control"></InputNumber>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @localizer["personname"]
+                </td>
+                <td>
+                    <InputText @bind-Value="person.PersonName" class="form-control"></InputText>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @localizer["address"]
+                </td>
+                <td>
+                    <InputText @bind-Value="person.Address" class="form-control"></InputText>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @localizer["residentcity"]
+                </td>
+                <td>
+                    <InputText @bind-Value="person.ResidentCity" class="form-control"></InputText>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @localizer["contectno"]
+                </td>
+                <td>
+                    <InputNumber @bind-Value="person.ContactNumber" class="form-control"></InputNumber>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @localizer["email"]
+                </td>
+                <td>
+                    <InputText @bind-Value="person.Email" class="form-control"></InputText>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-danger">@localizer["cancel"]</button>
+                </td>
+                <td>
+                    <button class="btn btn-success">@localizer["save"]</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</EditForm>
+@code {
+    private PersonInfo person = new PersonInfo();
+
+    protected override void OnInitialized()
+    {
+        
+        base.OnInitialized();
+    }
+
+    void savePerson()
+    {
+
+    }
+
+}
+
